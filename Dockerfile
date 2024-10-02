@@ -24,8 +24,8 @@ RUN flutter build web --release
 FROM nginx:alpine
 
 # Copy the Flutter web build files to the NGINX web directory
-COPY build/web /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build build/web /usr/share/nginx/html
+COPY --from=build nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 5555
 
